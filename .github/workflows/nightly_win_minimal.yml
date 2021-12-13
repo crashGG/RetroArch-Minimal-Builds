@@ -2,7 +2,7 @@ name: RetroArch Nightly Minimal Build
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   Windows:
     name: Build RetroArch Nightly Minimal Windows
