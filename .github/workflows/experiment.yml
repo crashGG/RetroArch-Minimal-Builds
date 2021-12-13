@@ -35,7 +35,7 @@ jobs:
       run: strip.exe -s retroarch.exe
     - name: Zip just the executables and libs
       working-directory: RetroArch
-      run: 7z a -mx=9 RetroArch-Win-x86_64-Nightly_Minimal.7z *.exe *.dll !nvdaControllerClient64.dll
+      run: 7z a -mx=9 RetroArch-Win-x86_64-Nightly_Minimal.7z *.exe *.dll ! nvdaControllerClient64.dll
     - name: Upload Minimal 7z
       uses: svenstaro/upload-release-action@v2
       with:
