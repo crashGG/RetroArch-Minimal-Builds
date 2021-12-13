@@ -38,8 +38,8 @@ jobs:
       run: mkdir working_dir
     - name: Gather the other libs
       working-directory: RetroArch
-      run: for (i in $(seq 3); do for bin in $(ntldd -R *exe | grep -i mingw | cut -d">" -f2 | cut -d" " -f2)); do cp -vu "$bin" . ; done; done 
-    - name: Strip regular exe
+      run: ForEach ($l in $(msys2 -c ntldd.exe -R '*.exe'|grep mingw64|sed -e 's/^[ \t]*//'|cut -d' ' -f3)){cp "$l" ../working_dir}
+    - name: Strip exe
       working-directory: RetroArch
       run: strip.exe -s retroarch.exe
     - name: Move exe and dlls to working dir
