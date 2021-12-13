@@ -58,5 +58,3 @@ jobs:
         tag: Nightlies
         asset_name: RetroArch-Win-x86_64-Nightly_Minimal.7z
         overwrite: true
-    - shell: msys2 {0}
-      run: rm -rf working_dir
