@@ -38,7 +38,7 @@ jobs:
       run: mkdir working_dir
     - name: Gather the other libs
       working-directory: RetroArch
-      run: for i in $(seq 3); do for bin in $(ntldd -R *exe | grep -i mingw | cut -d">" -f2 | cut -d" " -f2); do cp -vu "$bin" . ; done; done 
+      run: for (i in $(seq 3); do for bin in $(ntldd -R *exe | grep -i mingw | cut -d">" -f2 | cut -d" " -f2)); do cp -vu "$bin" . ; done; done 
     - name: Strip regular exe
       working-directory: RetroArch
       run: strip.exe -s retroarch.exe
