@@ -42,12 +42,12 @@ jobs:
     - name: Strip exe
       working-directory: RetroArch
       run: strip.exe -s retroarch.exe
-    - name: Move exe and dlls to working dir
+    - name: Move exe to working dir
       working-directory: RetroArch
-      run: mv *.exe *.dll ../working_dir
+      run: mv *.exe ../working_dir
     - name: Zip just the executables and libs
       working-directory: working_dir
-      run: 7z a -mx=9 RetroArch-Win-x86_64-Nightly_Minimal.7z *.exe *dll
+      run: 7z a -mx=9 RetroArch-Win-x86_64-Nightly_Minimal.7z *.exe *.dll
     - name: Upload Minimal 7z
       uses: svenstaro/upload-release-action@v2
       with:
