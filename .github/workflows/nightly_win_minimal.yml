@@ -1,8 +1,6 @@
 name: RetroArch Nightly Minimal Build
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 jobs:
   Windows:
     name: Build RetroArch Nightly Minimal Windows
@@ -40,13 +38,13 @@ jobs:
       run: mkdir working_dir
     - name: Gather the other libs
       working-directory: RetroArch
-      run: ForEach ($l in $(msys2 -c ntldd.exe -R '*.exe'|grep mingw64|sed -e 's/^[ \t]*//'|cut -d' ' -f3)){cp "$l" ../working_dir}   
+      run: for i in $(seq 3); do for bin in $(ntldd -R *exe | grep -i mingw | cut -d">" -f2 | cut -d" " -f2); do cp -vu "$bin" . ; done; done 
     - name: Strip regular exe
       working-directory: RetroArch
       run: strip.exe -s retroarch.exe
-    - name: Move executables to working dir (libs are already there)
+    - name: Move exe and dlls to working dir
       working-directory: RetroArch
-      run: mv *.exe ../working_dir
+      run: mv *.exe *.dll ../working_dir
     - name: Zip just the executables and libs
       working-directory: working_dir
       run: 7z a -mx=9 RetroArch-Win-x86_64-Nightly_Minimal.7z *.exe *dll
