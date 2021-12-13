@@ -1,0 +1,62 @@
+name: RetroArch Nightly Minimal Build
+on:
+  push:
+    branches:
+      - master
+jobs:
+  Windows:
+    name: Build RetroArch Nightly Minimal Windows
+    runs-on: windows-latest
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        update: true
+        install: >-
+          base-devel
+          git
+          wget
+          make
+          mingw-w64-x86_64-binutils
+          mingw-w64-x86_64-toolchain
+          mingw-w64-x86_64-ntldd
+          mingw-w64-x86_64-zlib
+          mingw-w64-x86_64-pkg-config
+          mingw-w64-x86_64-libxml2
+          mingw-w64-x86_64-freetype
+          mingw-w64-x86_64-python3
+          mingw-w64-x86_64-drmingw
+          mingw-w64-x86_64-openssl
+          unzip
+          p7zip
+    - uses: actions/checkout@v2
+    - name: Fetch the source
+      run: git clone https://github.com/libretro/RetroArch.git
+    - shell: msys2 {0}
+      working-directory: RetroArch
+      run: |
+        ./configure --disable-qt --disable-ffmpeg --disable-sdl2
+        make -j8
+    - name: Setup working dir
+      run: mkdir working_dir
+    - name: Gather the other libs
+      working-directory: RetroArch
+      run: ForEach ($l in $(msys2 -c ntldd.exe -R '*.exe'|grep mingw64|sed -e 's/^[ \t]*//'|cut -d' ' -f3)){cp "$l" ../working_dir}   
+    - name: Strip regular exe
+      working-directory: RetroArch
+      run: strip.exe -s retroarch.exe
+    - name: Move executables to working dir (libs are already there)
+      working-directory: RetroArch
+      run: mv *.exe ../working_dir
+    - name: Zip just the executables and libs
+      working-directory: working_dir
+      run: 7z a -mx=9 RetroArch-Win-x86_64-Nightly_Minimal.7z *.exe *dll
+    - name: Upload Minimal 7z
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: working_dir/RetroArch-Win-x86_64-Nightly_Minimal.7z
+        tag: Nightlies
+        asset_name: RetroArch-Win-x86_64-Nightly_Minimal.7z
+        overwrite: true
+    - shell: msys2 {0}
+      run: rm -rf working_dir
