@@ -48,7 +48,7 @@ jobs:
     - shell: msys2 {0}
       working-directory: RetroArch
       run: |
-        rm *.exe *.dll
+        rm *.dll
     - shell: msys2 {0}
       working-directory: RetroArch
       run: |
