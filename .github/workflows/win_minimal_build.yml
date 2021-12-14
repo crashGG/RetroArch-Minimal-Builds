@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 jobs:
   Windows:
-    name: Build RetroArch Minimal Windows
+    name: Build RetroArch Windows Minimal
     runs-on: windows-latest
     steps:
     - uses: msys2/setup-msys2@v2
@@ -54,7 +54,7 @@ jobs:
     - name: Strip exe
       working-directory: RetroArch
       run: strip.exe -s retroarch.exe
-    - name: Zip just the executables and libs
+    - name: Zip the exe and dlls
       working-directory: RetroArch
       run: 7z a -mx=9 RetroArch-Win-x86_64-Super_Minimal.7z *.exe *.dll
     - name: Upload Super Minimal 7z
