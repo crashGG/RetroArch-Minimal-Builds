@@ -1,7 +1,38 @@
 # RetroArch Minimal Windows Builds
 
-Github Actions Windows builds of RetroArch with features disabled during compilation to reduce filesize and amount of .dll files.
+Github Actions Windows builds of RetroArch with features disabled during compilation to reduce filesize and the amount of .dll files needed.
 
-The Minimal build has qt (desktop interface), ffmpeg (audio and video file playback) and sdl2 disabled.
+## The Minimal build disables:
+- qt (desktop interface)
+- ffmpeg (audio and video file playback) 
+- sdl2 (controller input, but xinput and dinput are still available)
 
-The Super Minimal build has qt, ffmpeg, sdl2, all networking features including the updater and several other features disabled.
+## The Super Minimal build disables:
+- qt (desktop interface)
+- ffmpeg (audio and video file playback) 
+- sdl2 (controller input, but xinput and dinput are still available)
+- overlays
+- networking (core and asset updaters, acheivements, online play)
+- video filters
+- video layout
+- glsl shaders
+- bsv movie file support
+- dsp audio filters
+- cheats
+- rewind
+- accessibility features
+- translation
+- cdrom drive reading
+- image file viewer
+- blissbox support
+- xmb, materialui and rgui interfaces (only ozone)
+- d3d9 and d3d10 video drivers
+- wasapi and dsound audio drivers
+- libretro database support
+- audio mixer
+- freetype font support
+- extra languages
+- cc and nearest audio resamplers
+- crt switchres support
+- 7z/zip archived content frontend support (cores like fbneo that have 7z/zip support internally can still load them)
+- softpatching
