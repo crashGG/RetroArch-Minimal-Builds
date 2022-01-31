@@ -1,7 +1,5 @@
 # RetroArch Minimal Windows Builds
 
-Github Actions Windows builds of RetroArch with features disabled during compilation to reduce filesize and the amount of .dll files needed.
-
 ## The Minimal build disables:
 - qt (desktop interface)
 - ffmpeg (audio and video file playback) 
