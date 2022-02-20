@@ -43,6 +43,7 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: RetroArch/RetroArch-Win-x86_64-Minimal.7z
         tag: Main
+        overwrite: true
     - shell: msys2 {0}
       working-directory: RetroArch
       run: |
@@ -65,3 +66,4 @@ jobs:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: RetroArch/RetroArch-Win-x86_64-Super_Minimal.7z
         tag: Main
+        overwrite: true
