@@ -66,6 +66,4 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: RetroArch/RetroArch-Win-x86_64-Super_Minimal.7z
-        tag: Main
-        asset_name: RetroArch-Win-x86_64-Super_Minimal.7z
-        overwrite: true
+        tag: RetroArch Minimal
