@@ -12,7 +12,6 @@
 - overlays
 - networking (core and asset updaters, acheivements, online play)
 - video filters
-- video layout
 - glsl shaders
 - bsv movie file support
 - dsp audio filters
