@@ -37,13 +37,7 @@ jobs:
     - name: Zip just the executables and libs
       working-directory: RetroArch
       run: 7z a -mx=9 RetroArch-Win-x86_64-Minimal.7z *.exe *.dll
-    - name: Upload Minimal 7z
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: RetroArch/RetroArch-Win-x86_64-Minimal.7z
-        tag: Main
-        overwrite: true
+    
     - shell: msys2 {0}
       working-directory: RetroArch
       run: |
@@ -60,10 +54,4 @@ jobs:
     - name: Zip the exe and dlls
       working-directory: RetroArch
       run: 7z a -mx=9 RetroArch-Win-x86_64-Super_Minimal.7z *.exe *.dll
-    - name: Upload Super Minimal 7z
-      uses: svenstaro/upload-release-action@v2
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: RetroArch/RetroArch-Win-x86_64-Super_Minimal.7z
-        tag: Main
-        overwrite: true
+    
