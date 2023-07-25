@@ -27,7 +27,7 @@ jobs:
     - shell: msys2 {0}
       working-directory: RetroArch
       run: |
-        ./configure --disable-overlay --disable-networking --disable-video_filter --disable-glsl --disable-bsv_movie --disable-dsp_filter --disable-cheats --disable-rewind --disable-accessibility --disable-translate --disable-cdrom --disable-imageviewer --disable-qt --disable-ffmpeg --disable-sdl2 --disable-d3d9 --disable-d3d10 --disable-d3d12 --disable-wasapi --disable-libretrodb --disable-audiomixer --disable-dsound --disable-flac --disable-dr_mp3 --disable-rtga --disable-rjpeg --disable-rbmp --disable-freetype --disable-langextra --disable-cc_resampler --disable-nearest_resampler --disable-crtswitchres --disable-chd --disable-7zip --disable-patch
+        ./configure --disable-overlay --disable-networking --disable-video_filter --disable-glsl --disable-bsv_movie --disable-dsp_filter --disable-cheats --disable-rewind --disable-accessibility --disable-translate --disable-cdrom --disable-imageviewer --disable-qt --disable-ffmpeg --disable-sdl2 --disable-blissbox --disable-xmb --disable-materialui --disable-rgui --disable-wasapi --disable-libretrodb --disable-audiomixer --disable-dsound --disable-flac --disable-dr_mp3 --disable-rtga --disable-rjpeg --disable-rbmp --disable-freetype --disable-langextra --disable-cc_resampler --disable-nearest_resampler --disable-crtswitchres --disable-chd --disable-7zip --disable-patch
         make -j8
         for i in $(seq 3); do for bin in $(ntldd -R *exe | grep -i mingw | cut -d">" -f2 | cut -d" " -f2); do cp -vu "$bin" . ; done; done
     - name: Strip exe
