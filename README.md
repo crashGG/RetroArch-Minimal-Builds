@@ -23,8 +23,8 @@
 - image file viewer
 - blissbox support
 - xmb, materialui and rgui interfaces (only ozone)
-- d3d9, d3d10 and d3d12 video drivers
-- wasapi and dsound audio drivers
+- d3d9 and d3d10 video drivers
+- dsound audio driver
 - libretro database support
 - audio mixer
 - freetype font support
